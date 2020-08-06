@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
-    before_action :set_task, only: [:show,:edit,:destroy,:update]
     before_action :required_user_logged_in, only:[:index]
-    before_action :correct_user, only: [:destroy]
+    before_action :set_task, only: [:show,:edit,:destroy,:update]
+    before_action :correct_user, only: [:destroy,:edit,:show,:update]
   def index
      @tasks=current_user.tasks.order(id: :desc).page(params[:page])
   end
