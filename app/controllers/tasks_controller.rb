@@ -3,10 +3,7 @@ class TasksController < ApplicationController
     before_action :required_user_logged_in, only:[:index]
     before_action :correct_user, only: [:destroy]
   def index
-     
-     
      @tasks=current_user.tasks.order(id: :desc).page(params[:page])
-     
   end
 
   def show
@@ -23,7 +20,7 @@ class TasksController < ApplicationController
     flash[:success] = 'Taskが正常に投稿されました' 
      redirect_to @task
      else
-    flash[:danger].now = 'Taskが投稿されませんでした'
+    flash.now[:danger]= 'Taskが投稿されませんでした'
     render :new 
      end
   end
